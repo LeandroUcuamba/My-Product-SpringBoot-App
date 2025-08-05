@@ -3,14 +3,17 @@ package com.myProduts.myProduts.models;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.myProduts.myProduts.enums.ProductType;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
-@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "TB_PRODUCTS")
+@Entity
 public class ProductModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
