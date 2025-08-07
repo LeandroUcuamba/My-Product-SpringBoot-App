@@ -1,5 +1,6 @@
 package com.myProduts.myProduts.controller;
 
+import com.myProduts.myProduts.Exception.ErrorMessageException;
 import com.myProduts.myProduts.models.ProductModel;
 import com.myProduts.myProduts.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,12 @@ public class ProductController {
     public ResponseEntity<Object> getOneProduct(@PathVariable(value = "productId")UUID productId){
         Optional<ProductModel> product = productService.getOneProduct(productId);
 
+        ErrorMessageException errorMessage = new ErrorMessageException("Product not found");
+
         if(product.isPresent()){
             return ResponseEntity.status(HttpStatus.OK).body(product);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
 
     }
